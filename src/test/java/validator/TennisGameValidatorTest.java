@@ -12,7 +12,6 @@ class TennisGameValidatorTest {
 
     private final TennisGameValidator validator = new TennisGameValidator();
 
-    // --- Helpers ---
 
     private String generateSequence(char c, int length) {
         char[] chars = new char[length];
@@ -21,7 +20,6 @@ class TennisGameValidatorTest {
         // en Java 11+ tu pourrais faire : return String.valueOf(c).repeat(length);
     }
 
-    // --- Cas OK ---
 
     @Test
     @DisplayName("Dois accepter les chaines de caractères contenant uniquement A et B")
@@ -41,8 +39,6 @@ class TennisGameValidatorTest {
                 .isThrownBy(() -> validator.validate(input));
     }
 
-    // --- Cas KO fonctionnels (IllegalArgumentException) ---
-
     @Test
     void validate_shouldThrowIllegalArgumentException_whenInputIsNull() {
         assertThatExceptionOfType(IllegalArgumentException.class)
@@ -52,7 +48,6 @@ class TennisGameValidatorTest {
 
     @Test
     void validate_shouldThrowIllegalArgumentException_whenInputIsEmpty() {
-        // WHEN / THEN
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> validator.validate(""))
                 .withMessageContaining("ne peut pas être vide");
@@ -75,8 +70,6 @@ class TennisGameValidatorTest {
                 .isThrownBy(() -> validator.validate(input))
                 .withMessageContaining("Format Invalide");
     }
-
-    // --- Cas sécurité (SecurityException) ---
 
     @Test
     void validate_shouldThrowSecurityException_whenInputTooLong() {
