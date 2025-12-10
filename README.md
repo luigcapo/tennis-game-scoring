@@ -3,14 +3,13 @@
 
 ---
 
-## 🛠 Prerequisites
+##  Prerequisites
 
 * **Java 21** or higher
 * **Maven 3.6+**
 
-## 🚀 How to Run
 
-### 1. Build & Test
+## 1. Build & Test
 First, clone the repository and run the full test suite (Unit & Integration tests).
 
 ```bash
@@ -19,7 +18,7 @@ cd tennis-game-scoring
 mvn clean test
 ```
 
-# 2. Run the Application
+## 2. Run the Application
 You can run the application directly using the Maven Exec plugin.
 
 Syntax:
@@ -33,8 +32,8 @@ Example:
 ```bash
 mvn -q -DskipTests compile exec:java -Dexec.args="ABABAA"
 ```
-# 3. Design Choices & Architecture
-# Separation of Concerns (SRP)
+## 3. Design Choices & Architecture
+### Separation of Concerns (SRP)
 The application is split into distinct layers:
 
 Service: Pure business logic.
@@ -43,21 +42,21 @@ Validator: Responsible for protecting the application.
 
 Model: simple POJOs/Enums.
 
-# Security & Validation (Fail Fast)
+### Security & Validation (Fail Fast)
 I prefer to reject invalid data immediately .
 
 Strict Format: Only A and B characters are allowed. Any other character (spaces, lowercase, numbers) triggers an immediate IllegalArgumentException.
 
 Input length is capped at 500 characters. Exceeding this limit throws a SecurityException to prevent memory overflow attacks.
 
-# Game Logic
+### Game Logic
 Idempotency after Win: Once a player reaches the WIN state, any subsequent points in the sequence are ignored. 
 
-# Logs
+### Logs
 
 Technical logs (SLF4J/Logback) are separated from the Standard Output and are stored in the `logs/` directory at the project root.
 
-# Tech Stack
+### Tech Stack
 Java 21
 
 Maven
